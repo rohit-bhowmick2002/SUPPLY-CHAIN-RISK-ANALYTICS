@@ -1,0 +1,121 @@
+supplier_id,supplier_name,country_code,country_name,continent,category,tier,established_year,annual_capacity_usd,lead_time_days,min_order_qty,risk_band,is_sole_source,certifications
+SUP0001,France Packaging Co. 1,FR,France,Europe,Packaging,Tier 2,1991,11898005.06,11,1468,Medium,N,IATF16949
+SUP0002,Canada Electronic Ltd 2,CA,Canada,North America,Electronic Components,Tier 2,2011,10373672.14,42,9690,Low,N,"ISO9001,ISO14001"
+SUP0003,Turkey Packaging Group 3,TR,Turkey,Europe,Packaging,Tier 1,2009,33198110.85,39,5601,Low,N,IATF16949
+SUP0004,United States Plastics Co. 4,US,United States,North America,Plastics,Tier 1,2005,2611247.72,38,174,Medium,Y,IATF16949
+SUP0005,Indonesia Packaging Ltd 5,ID,Indonesia,Asia,Packaging,Tier 2,2009,48847238.28,25,2165,Low,N,None
+SUP0006,Indonesia Mechanical Group 6,ID,Indonesia,Asia,Mechanical Parts,Tier 2,1991,2334577.36,4,2854,Medium,N,AS9100
+SUP0007,Malaysia Electronic Co. 7,MY,Malaysia,Asia,Electronic Components,Tier 1,1999,31060848.49,27,5451,Low,N,ISO14001
+SUP0008,Thailand Plastics Ltd 8,TH,Thailand,Asia,Plastics,Tier 1,2014,20501349.37,11,5846,Medium,N,ISO14001
+SUP0009,Canada Mechanical Group 9,CA,Canada,North America,Mechanical Parts,Tier 2,2006,6656163.89,10,2403,Medium,Y,ISO14001
+SUP0010,Poland Packaging Co. 10,PL,Poland,Europe,Packaging,Tier 2,2000,38643074.06,17,4270,Low,N,"ISO9001,ISO14001"
+SUP0011,India Logistics Ltd 11,IN,India,Asia,Logistics,Tier 1,2017,41711400.77,24,3594,Medium,N,AS9100
+SUP0012,France Chemicals Group 12,FR,France,Europe,Chemicals,Tier 2,1985,9470659.67,5,6161,Medium,N,ISO14001
+SUP0013,Turkey Packaging Co. 13,TR,Turkey,Europe,Packaging,Tier 3,1999,5734561.62,23,3631,Low,N,AS9100
+SUP0014,Indonesia Textiles Ltd 14,ID,Indonesia,Asia,Textiles,Tier 1,1984,25405957.62,23,7866,High,Y,"ISO9001,ISO14001"
+SUP0015,Italy Textiles Group 15,IT,Italy,Europe,Textiles,Tier 3,1990,14473397.39,41,7259,Low,N,ISO14001
+SUP0016,Germany Chemicals Co. 16,DE,Germany,Europe,Chemicals,Tier 3,1998,48250050.91,15,2862,Medium,N,None
+SUP0017,United States Textiles Ltd 17,US,United States,North America,Textiles,Tier 1,2005,679104.05,35,8762,Low,Y,"ISO9001,ISO14001"
+SUP0018,Canada Mechanical Group 18,CA,Canada,North America,Mechanical Parts,Tier 2,2008,46688034.07,19,6879,Medium,N,None
+SUP0019,Canada Logistics Co. 19,CA,Canada,North America,Logistics,Tier 1,1981,49977164.08,22,1288,High,Y,ISO9001
+SUP0020,Italy Chemicals Ltd 20,IT,Italy,Europe,Chemicals,Tier 2,2017,28958167.92,15,1690,Medium,N,ISO14001
+SUP0021,France Chemicals Group 21,FR,France,Europe,Chemicals,Tier 1,1988,45137496.57,27,6901,High,N,ISO14001
+SUP0022,Italy Packaging Co. 22,IT,Italy,Europe,Packaging,Tier 1,2009,28846851.35,27,3059,Medium,N,None
+SUP0023,Turkey Mechanical Ltd 23,TR,Turkey,Europe,Mechanical Parts,Tier 1,2014,12358864.7,32,8621,Low,Y,AS9100
+SUP0024,South Korea Raw Group 24,KR,South Korea,Asia,Raw Materials,Tier 2,2014,14129958.59,3,9600,Medium,N,ISO14001
+SUP0025,China Textiles Co. 25,CN,China,Asia,Textiles,Tier 1,1983,17448291.95,17,9147,Medium,Y,AS9100
+SUP0026,Malaysia Packaging Ltd 26,MY,Malaysia,Asia,Packaging,Tier 1,1987,24490747.49,20,4563,Medium,Y,ISO14001
+SUP0027,United States Chemicals Group 27,US,United States,North America,Chemicals,Tier 3,2014,4532418.86,10,2109,Low,Y,ISO9001
+SUP0028,Malaysia Mechanical Co. 28,MY,Malaysia,Asia,Mechanical Parts,Tier 1,1994,30941708.51,42,2689,Medium,N,"ISO9001,ISO14001"
+SUP0029,Mexico Packaging Ltd 29,MX,Mexico,North America,Packaging,Tier 1,1991,37073066.07,12,8185,High,N,ISO9001
+SUP0030,Malaysia Electronic Group 30,MY,Malaysia,Asia,Electronic Components,Tier 1,2016,22470524.16,41,1363,Low,N,ISO14001
+SUP0031,Italy Logistics Co. 31,IT,Italy,Europe,Logistics,Tier 1,2017,2757229.57,28,383,Medium,N,ISO14001
+SUP0032,Vietnam Logistics Ltd 32,VN,Vietnam,Asia,Logistics,Tier 1,1987,24875946.87,7,710,Medium,Y,None
+SUP0033,Italy Chemicals Group 33,IT,Italy,Europe,Chemicals,Tier 1,2004,40787515.03,42,3763,High,Y,None
+SUP0034,Vietnam Textiles Co. 34,VN,Vietnam,Asia,Textiles,Tier 2,2012,35922826.87,17,2903,High,N,ISO9001
+SUP0035,Thailand Logistics Ltd 35,TH,Thailand,Asia,Logistics,Tier 1,2016,5150846.92,3,9316,Low,N,ISO14001
+SUP0036,Vietnam Raw Group 36,VN,Vietnam,Asia,Raw Materials,Tier 1,1991,29197832.25,30,2488,Low,N,ISO9001
+SUP0037,Mexico Plastics Co. 37,MX,Mexico,North America,Plastics,Tier 1,1990,29617281.77,24,7171,Low,N,IATF16949
+SUP0038,South Korea Mechanical Ltd 38,KR,South Korea,Asia,Mechanical Parts,Tier 1,2016,24489683.88,9,7198,High,Y,ISO14001
+SUP0039,Indonesia Packaging Group 39,ID,Indonesia,Asia,Packaging,Tier 1,1996,8808223.16,36,8315,High,Y,ISO14001
+SUP0040,United States Textiles Co. 40,US,United States,North America,Textiles,Tier 2,2013,28289425.6,18,4154,Medium,N,"ISO9001,ISO14001"
+SUP0041,Poland Electronic Ltd 41,PL,Poland,Europe,Electronic Components,Tier 3,1981,47193599.02,30,1068,Medium,Y,ISO9001
+SUP0042,Mexico Mechanical Group 42,MX,Mexico,North America,Mechanical Parts,Tier 1,1996,1001751.8,36,4888,Low,N,ISO9001
+SUP0043,South Korea Textiles Co. 43,KR,South Korea,Asia,Textiles,Tier 1,1999,26777381.61,15,7462,Low,N,ISO9001
+SUP0044,Poland Mechanical Ltd 44,PL,Poland,Europe,Mechanical Parts,Tier 2,1985,41823757.5,27,345,Medium,N,AS9100
+SUP0045,Japan Electronic Group 45,JP,Japan,Asia,Electronic Components,Tier 1,1981,9209147.33,17,5678,High,N,ISO9001
+SUP0046,United States Textiles Co. 46,US,United States,North America,Textiles,Tier 1,2007,4507754.72,26,8195,Medium,N,AS9100
+SUP0047,Canada Logistics Ltd 47,CA,Canada,North America,Logistics,Tier 1,2002,40515778.17,20,8752,Low,Y,ISO9001
+SUP0048,Vietnam Chemicals Group 48,VN,Vietnam,Asia,Chemicals,Tier 2,1986,13913567.51,22,4033,Low,N,AS9100
+SUP0049,United States Logistics Co. 49,US,United States,North America,Logistics,Tier 1,2004,6536515.34,4,4675,Medium,N,None
+SUP0050,France Chemicals Ltd 50,FR,France,Europe,Chemicals,Tier 2,1995,30446151.01,37,1784,Medium,N,ISO14001
+SUP0051,Vietnam Plastics Group 51,VN,Vietnam,Asia,Plastics,Tier 3,2011,17255239.97,41,1444,Low,Y,ISO9001
+SUP0052,United States Textiles Co. 52,US,United States,North America,Textiles,Tier 1,2007,44218008.07,45,9656,High,Y,ISO9001
+SUP0053,Poland Packaging Ltd 53,PL,Poland,Europe,Packaging,Tier 3,1986,1129643.5,30,4750,Low,N,None
+SUP0054,Poland Textiles Group 54,PL,Poland,Europe,Textiles,Tier 1,1999,42174206.0,29,6376,Low,Y,IATF16949
+SUP0055,Italy Mechanical Co. 55,IT,Italy,Europe,Mechanical Parts,Tier 1,1987,2238752.8,41,1194,Medium,N,ISO14001
+SUP0056,Czech Republic Plastics Ltd 56,CZ,Czech Republic,Europe,Plastics,Tier 1,2012,15678280.85,31,4183,High,N,ISO14001
+SUP0057,Italy Mechanical Group 57,IT,Italy,Europe,Mechanical Parts,Tier 1,2001,25764503.02,35,3817,High,N,IATF16949
+SUP0058,Thailand Textiles Co. 58,TH,Thailand,Asia,Textiles,Tier 1,2016,516609.94,28,9564,Low,Y,ISO9001
+SUP0059,France Electronic Ltd 59,FR,France,Europe,Electronic Components,Tier 1,1980,10157577.66,8,4009,Medium,Y,ISO14001
+SUP0060,Mexico Logistics Group 60,MX,Mexico,North America,Logistics,Tier 1,2015,33992138.09,15,1508,High,Y,ISO9001
+SUP0061,Vietnam Textiles Co. 61,VN,Vietnam,Asia,Textiles,Tier 1,2012,2619589.02,44,4147,Medium,N,"ISO9001,ISO14001"
+SUP0062,South Korea Mechanical Ltd 62,KR,South Korea,Asia,Mechanical Parts,Tier 1,2000,34940109.48,38,3843,Low,N,None
+SUP0063,Canada Textiles Group 63,CA,Canada,North America,Textiles,Tier 3,2010,48046323.84,41,5744,High,Y,IATF16949
+SUP0064,Mexico Raw Co. 64,MX,Mexico,North America,Raw Materials,Tier 1,2018,29877760.51,12,2152,Medium,Y,IATF16949
+SUP0065,Turkey Logistics Ltd 65,TR,Turkey,Europe,Logistics,Tier 1,1991,27901536.0,9,9048,Medium,Y,"ISO9001,ISO14001"
+SUP0066,Poland Mechanical Group 66,PL,Poland,Europe,Mechanical Parts,Tier 1,1991,31622139.41,33,6456,Medium,N,IATF16949
+SUP0067,Italy Textiles Co. 67,IT,Italy,Europe,Textiles,Tier 1,1986,45965034.53,25,2255,Low,N,ISO9001
+SUP0068,South Korea Textiles Ltd 68,KR,South Korea,Asia,Textiles,Tier 1,2017,12226207.32,10,9952,Medium,N,"ISO9001,ISO14001"
+SUP0069,Poland Mechanical Group 69,PL,Poland,Europe,Mechanical Parts,Tier 3,1988,14714195.47,45,493,High,N,"ISO9001,ISO14001"
+SUP0070,Thailand Textiles Co. 70,TH,Thailand,Asia,Textiles,Tier 2,2015,6852714.58,22,7164,Medium,Y,"ISO9001,ISO14001"
+SUP0071,Indonesia Packaging Ltd 71,ID,Indonesia,Asia,Packaging,Tier 2,1984,25239482.04,22,4009,High,N,ISO14001
+SUP0072,Germany Chemicals Group 72,DE,Germany,Europe,Chemicals,Tier 2,1988,48274096.84,25,8825,Low,Y,ISO14001
+SUP0073,Canada Raw Co. 73,CA,Canada,North America,Raw Materials,Tier 2,1992,32339725.07,32,8186,Low,Y,ISO9001
+SUP0074,United States Mechanical Ltd 74,US,United States,North America,Mechanical Parts,Tier 3,2007,9630533.15,11,9049,Medium,N,IATF16949
+SUP0075,China Logistics Group 75,CN,China,Asia,Logistics,Tier 1,1982,34482926.11,39,6496,Medium,N,AS9100
+SUP0076,Vietnam Chemicals Co. 76,VN,Vietnam,Asia,Chemicals,Tier 3,1989,34723546.45,5,5451,High,N,IATF16949
+SUP0077,Malaysia Logistics Ltd 77,MY,Malaysia,Asia,Logistics,Tier 1,2012,13076031.04,8,6425,Medium,N,"ISO9001,ISO14001"
+SUP0078,Mexico Plastics Group 78,MX,Mexico,North America,Plastics,Tier 1,2015,9009494.53,4,4147,Low,Y,None
+SUP0079,United States Mechanical Co. 79,US,United States,North America,Mechanical Parts,Tier 2,1994,15337742.02,23,6495,Medium,N,"ISO9001,ISO14001"
+SUP0080,Poland Raw Ltd 80,PL,Poland,Europe,Raw Materials,Tier 1,2015,23451122.31,20,7936,Medium,N,ISO14001
+SUP0081,Czech Republic Mechanical Group 81,CZ,Czech Republic,Europe,Mechanical Parts,Tier 3,1983,25417049.06,38,9675,Low,N,AS9100
+SUP0082,India Textiles Co. 82,IN,India,Asia,Textiles,Tier 1,2007,26832519.26,24,3581,Low,Y,None
+SUP0083,Malaysia Mechanical Ltd 83,MY,Malaysia,Asia,Mechanical Parts,Tier 1,2006,47986637.3,17,5639,Low,Y,None
+SUP0084,India Plastics Group 84,IN,India,Asia,Plastics,Tier 2,1993,36589673.48,19,7221,Medium,N,ISO14001
+SUP0085,Canada Textiles Co. 85,CA,Canada,North America,Textiles,Tier 2,2007,16293255.72,13,2399,Medium,N,None
+SUP0086,Indonesia Plastics Ltd 86,ID,Indonesia,Asia,Plastics,Tier 2,1991,23004574.46,36,8032,High,N,IATF16949
+SUP0087,Czech Republic Plastics Group 87,CZ,Czech Republic,Europe,Plastics,Tier 1,2010,2156311.6,32,3208,Low,N,ISO9001
+SUP0088,France Chemicals Co. 88,FR,France,Europe,Chemicals,Tier 1,1992,6756396.18,10,9025,Medium,N,ISO9001
+SUP0089,Japan Packaging Ltd 89,JP,Japan,Asia,Packaging,Tier 1,1994,38684220.85,19,381,Medium,N,ISO9001
+SUP0090,Thailand Raw Group 90,TH,Thailand,Asia,Raw Materials,Tier 1,1994,47005763.43,16,3545,High,N,ISO14001
+SUP0091,Italy Plastics Co. 91,IT,Italy,Europe,Plastics,Tier 1,2003,17665118.46,24,4045,Medium,Y,AS9100
+SUP0092,Japan Raw Ltd 92,JP,Japan,Asia,Raw Materials,Tier 1,2005,45748768.24,21,6092,Medium,Y,None
+SUP0093,Italy Logistics Group 93,IT,Italy,Europe,Logistics,Tier 3,2010,32592395.45,3,7742,Low,N,IATF16949
+SUP0094,South Korea Electronic Co. 94,KR,South Korea,Asia,Electronic Components,Tier 1,2007,35730844.62,26,107,Low,N,"ISO9001,ISO14001"
+SUP0095,Mexico Logistics Ltd 95,MX,Mexico,North America,Logistics,Tier 1,1996,19810525.88,41,3831,Medium,N,IATF16949
+SUP0096,India Plastics Group 96,IN,India,Asia,Plastics,Tier 1,1985,34202216.66,10,5687,Medium,N,ISO14001
+SUP0097,China Mechanical Co. 97,CN,China,Asia,Mechanical Parts,Tier 2,1996,40248543.88,28,2800,Low,N,"ISO9001,ISO14001"
+SUP0098,Malaysia Logistics Ltd 98,MY,Malaysia,Asia,Logistics,Tier 2,1991,8888720.56,40,425,Low,Y,"ISO9001,ISO14001"
+SUP0099,France Mechanical Group 99,FR,France,Europe,Mechanical Parts,Tier 1,1988,14736616.04,25,9525,Medium,Y,ISO14001
+SUP0100,Thailand Logistics Co. 100,TH,Thailand,Asia,Logistics,Tier 2,1987,41330986.56,8,9222,Low,Y,IATF16949
+SUP0101,United States Chemicals Ltd 101,US,United States,North America,Chemicals,Tier 2,2004,18311953.09,42,3862,Low,N,IATF16949
+SUP0102,Italy Textiles Group 102,IT,Italy,Europe,Textiles,Tier 1,2008,47112863.16,21,8546,Low,N,"ISO9001,ISO14001"
+SUP0103,Turkey Packaging Co. 103,TR,Turkey,Europe,Packaging,Tier 1,2015,35321336.67,5,2912,Low,N,"ISO9001,ISO14001"
+SUP0104,Germany Electronic Ltd 104,DE,Germany,Europe,Electronic Components,Tier 1,1990,1277559.34,8,2070,Low,Y,ISO9001
+SUP0105,Mexico Chemicals Group 105,MX,Mexico,North America,Chemicals,Tier 1,1991,22532423.69,41,818,Medium,Y,ISO14001
+SUP0106,Mexico Chemicals Co. 106,MX,Mexico,North America,Chemicals,Tier 1,2002,9116896.42,22,5084,High,Y,ISO14001
+SUP0107,United States Raw Ltd 107,US,United States,North America,Raw Materials,Tier 2,2015,16151281.2,44,3906,High,N,"ISO9001,ISO14001"
+SUP0108,Mexico Packaging Group 108,MX,Mexico,North America,Packaging,Tier 1,1982,8590177.11,10,3043,Low,Y,None
+SUP0109,Germany Logistics Co. 109,DE,Germany,Europe,Logistics,Tier 1,1995,10839195.55,36,8827,Low,N,AS9100
+SUP0110,Canada Plastics Ltd 110,CA,Canada,North America,Plastics,Tier 2,1997,37332086.33,19,8553,Medium,Y,None
+SUP0111,Czech Republic Chemicals Group 111,CZ,Czech Republic,Europe,Chemicals,Tier 2,1995,39748835.45,41,1831,Low,Y,None
+SUP0112,Japan Packaging Co. 112,JP,Japan,Asia,Packaging,Tier 2,1988,26410398.03,29,4819,Low,N,ISO14001
+SUP0113,Mexico Raw Ltd 113,MX,Mexico,North America,Raw Materials,Tier 1,2018,10290342.9,35,4179,Medium,Y,ISO14001
+SUP0114,Mexico Chemicals Group 114,MX,Mexico,North America,Chemicals,Tier 2,2009,47856357.46,24,6154,Low,Y,"ISO9001,ISO14001"
+SUP0115,Poland Electronic Co. 115,PL,Poland,Europe,Electronic Components,Tier 3,2010,35062533.02,11,7845,Medium,N,AS9100
+SUP0116,Thailand Logistics Ltd 116,TH,Thailand,Asia,Logistics,Tier 1,2013,23234181.19,4,6022,Low,N,AS9100
+SUP0117,Vietnam Electronic Group 117,VN,Vietnam,Asia,Electronic Components,Tier 1,2004,38179629.01,39,9973,Low,N,ISO14001
+SUP0118,China Electronic Co. 118,CN,China,Asia,Electronic Components,Tier 2,1986,30499197.96,30,5047,High,N,AS9100
+SUP0119,Canada Plastics Ltd 119,CA,Canada,North America,Plastics,Tier 1,1985,23023183.52,40,9824,Medium,Y,"ISO9001,ISO14001"
+SUP0120,China Electronic Group 120,CN,China,Asia,Electronic Components,Tier 1,1995,35459989.02,39,3469,Low,N,ISO9001

@@ -1,0 +1,9 @@
+plant_id,plant_name,country_code,country_name,continent,headcount,annual_output_usd
+PLT001,Detroit Plant,US,United States,North America,5000,120000000
+PLT002,Stuttgart Plant,DE,Germany,Europe,3200,95000000
+PLT003,Chennai Plant,IN,India,Asia,4100,60000000
+PLT004,Monterrey Plant,MX,Mexico,North America,2800,55000000
+PLT005,Shanghai Plant,CN,China,Asia,6000,140000000
+PLT006,Warsaw Plant,PL,Poland,Europe,1900,38000000
+PLT007,Bangkok Plant,TH,Thailand,Asia,2200,42000000
+PLT008,Toronto Plant,CA,Canada,North America,1500,30000000
