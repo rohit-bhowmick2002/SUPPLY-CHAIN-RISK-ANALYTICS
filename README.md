@@ -449,13 +449,14 @@ open supply_chain_dashboard.html
 
 ---
 
+## 👤 Author
+
 **Rohit Bhowmick** — Data Analyst  
 *SQL · Python · Tableau · Power BI*
 
-
-[![LinkedIn](www.linkedin.com/in/rohit-bhowmick)
-[![GitHub](https://github.com/rohit-bhowmick2002)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](https://linkedin.com/in/rohit-bhowmick)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=flat&logo=github)](https://github.com/rohit-bhowmick2002)
 
 ---
 
-*Built to demonstrate end-to-end data analytics competency: data modeling, SQL engineering, KPI design, risk quantification, and dashboard storytelling.*
+*Built to demonstrate real-world e-commerce analytics competency: relational data modelling, multi-level SQL engineering, customer segmentation, operational diagnostics, and business storytelling through data.*
