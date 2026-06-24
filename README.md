@@ -453,7 +453,7 @@ open supply_chain_dashboard.html
 *SQL · Python · Tableau · Power BI*
 
 
-[![LinkedIn](https://www.linkedin.com/in/rohit-bhowmick/)
+[![LinkedIn](www.linkedin.com/in/rohit-bhowmick)
 [![GitHub](https://github.com/rohit-bhowmick2002)
 
 ---
