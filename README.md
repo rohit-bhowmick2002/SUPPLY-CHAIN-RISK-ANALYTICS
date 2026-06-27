@@ -1,462 +1,592 @@
-# 🏭 Supply Chain Analytics — End-to-End Intelligence Platform
+<div align="center">
 
-> Improved operational visibility by **30%** through EDA, SQL analytics, and interactive dashboards built to monitor supplier performance, detect disruption risks, and optimize inventory across a global logistics pipeline.
+# 🚢 Supply Chain Risk Analytics
+
+### End-to-End Disruption, Inventory & Late-Delivery Risk Scoring Platform
+
+<p>
+  <img src="https://img.shields.io/badge/Domain-Supply%20Chain%20Analytics-0F172A?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Analytics-SQL%20%7C%20Python%20%7C%20Power%20BI-2563EB?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/ML-Random%20Forest%20%7C%20Isolation%20Forest-16A34A?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Status-Production%20Ready-B91C1C?style=for-the-badge" />
+</p>
+
+<p>
+  <b>3,000 purchase orders</b> · <b>120 suppliers</b> · <b>200 disruption events</b> · <b>$478.9M disruption loss analyzed</b>
+</p>
+
+</div>
 
 ---
 
 ## 📌 Project Overview
 
-This project delivers a full-stack supply chain analytics solution — from raw data ingestion and cleaning to executive-level dashboards — modeled on **100K+ supply chain records** spanning 120 suppliers, 60 products, and 8 global manufacturing plants.
+**Supply Chain Risk Analytics** is a full-stack analytics project that identifies late-delivery risk, disruption exposure, supplier risk, and inventory bottlenecks across a simulated enterprise supply-chain network.
 
-It was built to answer real business questions: *Which suppliers are failing? Where are shipments delayed? Which plants are about to run out of stock?*
+The project combines **SQL analytics**, **Python-based EDA**, **machine learning risk scoring**, **Power BI dashboarding**, and **Excel reporting** to convert raw supply-chain data into an executive-ready decision-support system.
+
+The pipeline analyzes purchase orders, suppliers, inventory, plant operations, disruption events, and risk indicators to answer one core business question:
+
+> **Which purchase orders, suppliers, plants, and inventory items require immediate action to reduce late deliveries, financial loss, and operational disruption?**
+
+<p align="center">
+  <img src="assets/images/01_delivery_outcome.png" width="48%" alt="Delivery Outcome Distribution" />
+  <img src="assets/images/12_risk_level_distribution.png" width="48%" alt="Purchase Orders by Risk Level" />
+</p>
+
+### Executive KPIs
+
+| Metric | Value |
+|---|---:|
+| Purchase orders analyzed | **3,000** |
+| Suppliers monitored | **120** |
+| Disruption events analyzed | **200** |
+| Late deliveries | **852** |
+| Late-delivery rate | **28.4%** |
+| Total disruption loss | **$478,893,166** |
+| High / Critical risk purchase orders | **640** |
+| Inventory SKU lines analyzed | **160** |
+| SKU lines below reorder point | **17** |
+| Shortage-risk SKU lines | **6** |
+| High/Critical understocked items | **9** |
+| Pipeline runtime | **4.6 seconds** |
 
 ---
 
-## 🎯 Business Impact
+## 💼 Business Impact
 
-| Outcome | Detail |
+This project delivers a practical analytics layer for procurement, operations, supply-chain planning, and executive teams.
+
+### Key Business Outcomes
+
+- **Detected 852 late deliveries**, representing a **28.4% late-delivery rate** across all purchase orders.
+- Quantified **$478.9M** in disruption-driven financial loss.
+- Flagged **640 high/critical purchase orders** for proactive intervention.
+- Identified **17 SKU lines below reorder point**, including **9 high/critical items**.
+- Built a cost-based intervention framework that reduces expected late-risk cost from **$10.22M** to **$979.8K**, a **90.4% cost reduction** versus ignoring late risk.
+- Defined actionable alert tiers for procurement teams: **Critical, High, Medium, Low**.
+
+<p align="center">
+  <img src="assets/images/04_loss_by_type.png" width="48%" alt="Financial Loss by Disruption Type" />
+  <img src="assets/images/13_cost_curve.png" width="48%" alt="Expected Cost vs Intervention Threshold" />
+</p>
+
+### KPI Alert Tiers
+
+| Risk Tier | Rule | Business Action |
+|---|---|---|
+| 🔴 Critical | Risk score ≥ 75 | Escalate to procurement lead and activate backup supplier |
+| 🟠 High | Risk score 50–75 | Expedite review and contact supplier within 24h SLA |
+| 🟤 Medium | Risk score 25–50 | Monitor weekly and review supplier status |
+| 🟢 Low | Risk score < 25 | Standard purchase-order processing |
+
+---
+
+## 🧱 Project Structure
+
+```text
+SUPPLY-CHAIN-RISK-ANALYTICS/
+│
+├── data/
+│   ├── raw/                         # Source CSV files
+│   ├── processed/                   # Cleaned / joined datasets
+│   └── exports/                     # Final scored outputs and report extracts
+│
+├── notebooks/
+│   ├── 01_eda_cleaning.ipynb        # Data quality, EDA and profiling
+│   ├── 02_feature_engineering.ipynb # Feature creation and risk variables
+│   └── 03_modeling_scoring.ipynb    # ML modeling, scoring and threshold tuning
+│
+├── sql/
+│   ├── create_tables.sql            # Schema creation
+│   ├── analysis_queries.sql         # Business analytics SQL queries
+│   └── sql_exports/                 # Query outputs for reporting
+│
+├── powerbi/
+│   ├── DATA_MODEL.md                # Star-schema relationships
+│   ├── MEASURES.dax                 # Production DAX measures
+│   └── star_schema_exports/         # Power BI-ready fact and dimension tables
+│
+├── reports/
+│   ├── Supply_Chain_Risk_Report.pdf # Executive report
+│   └── Excel_Report.xlsx            # Excel summary pack
+│
+├── assets/
+│   └── images/                      # Graphs used in README and reporting
+│
+├── docs/
+│   └── features.json                # Final ML feature list
+│
+├── requirements.txt
+└── README.md
+```
+
+<p align="center">
+  <img src="assets/images/05_correlation_heatmap.png" width="80%" alt="Feature Correlation Heatmap" />
+</p>
+
+---
+
+## 🗄️ Database Schema — Star Schema
+
+The analytics model is designed as a **star schema**, optimized for Power BI reporting, SQL querying, and KPI calculation.
+
+```mermaid
+erDiagram
+    dim_suppliers ||--o{ fact_purchase_orders_scored : supplies
+    dim_products ||--o{ fact_purchase_orders_scored : contains
+    dim_plants ||--o{ fact_purchase_orders_scored : receives
+    dim_date ||--o{ fact_purchase_orders_scored : order_date
+    dim_suppliers ||--o{ fact_disruptions : affected_by
+    dim_disruption_type ||--o{ fact_disruptions : classifies
+    dim_products ||--o{ fact_inventory : stocked_as
+    dim_plants ||--o{ fact_inventory : stored_at
+
+    fact_purchase_orders_scored {
+        string po_id PK
+        string supplier_id FK
+        string product_id FK
+        string plant_id FK
+        date order_date FK
+        int quantity_ordered
+        float total_value_usd
+        string status
+        int is_late
+        float late_probability
+        float anomaly_score
+        float composite_risk_score
+        string risk_level
+    }
+
+    fact_disruptions {
+        string disruption_id PK
+        string supplier_id FK
+        string disruption_type_id FK
+        date disruption_date
+        string severity
+        float financial_loss_usd
+        int duration_days
+    }
+
+    fact_inventory {
+        string inventory_id PK
+        string product_id FK
+        string plant_id FK
+        int current_stock
+        int reorder_point
+        float days_of_stock
+        int shortage_risk_flag
+    }
+```
+
+### Why Star Schema?
+
+- Faster Power BI slicing by supplier, plant, product, date, risk tier, and disruption type.
+- Clear separation between **facts** and **dimensions**.
+- Reusable DAX measures for delivery, risk, supplier, disruption, and inventory KPIs.
+- Easy integration with SQL exports and Excel summary tables.
+
+---
+
+## 📋 Tables at a Glance
+
+| Table | Type | Purpose | Example Fields |
+|---|---|---|---|
+| `fact_purchase_orders_scored` | Fact | Main purchase-order table with model scores and risk levels | PO ID, supplier, product, plant, value, late probability, risk score |
+| `fact_disruptions` | Fact | Disruption event tracking and financial loss analysis | Disruption type, severity, duration, loss |
+| `fact_inventory` | Fact | Inventory health and reorder-risk monitoring | Current stock, reorder point, days of stock, shortage flag |
+| `dim_suppliers` | Dimension | Supplier attributes and risk indicators | Supplier category, tier, risk band, quality, OTD |
+| `dim_products` | Dimension | Product and SKU information | Category, criticality, BOM components, unit cost |
+| `dim_plants` | Dimension | Plant-level supply-chain locations | Plant, region, country |
+| `dim_date` | Dimension | Date hierarchy for trend analysis | Year, quarter, month, week |
+| `dim_disruption_type` | Dimension | Disruption classification | Cyber attack, logistics delay, port strike, pandemic, etc. |
+
+<p align="center">
+  <img src="assets/images/07_supplier_risk_band.png" width="45%" alt="Suppliers by Risk Band" />
+  <img src="assets/images/03_disruptions_by_type.png" width="52%" alt="Disruptions by Type and Severity" />
+</p>
+
+---
+
+## 🧹 Exploratory Data Analysis & Data Cleaning
+
+The EDA and cleaning phase prepares the raw operational data for analytics, modeling, and dashboarding.
+
+### Data Cleaning Activities
+
+- Standardized column names to clean `snake_case` format.
+- Validated purchase-order status values and delivery outcome labels.
+- Checked missing values, duplicate keys, and invalid dates.
+- Converted financial columns into numeric USD fields.
+- Created late-delivery flag using delivery status and delay signals.
+- Removed post-event leakage fields from model training where required.
+- Joined purchase orders with supplier, product, disruption, plant, and inventory tables.
+- Created business-friendly output tables for SQL, Excel, and Power BI.
+
+<p align="center">
+  <img src="assets/images/02_late_by_category.png" width="48%" alt="Late Delivery Rate by Supplier Category" />
+  <img src="assets/images/06_late_over_time.png" width="48%" alt="Late Deliveries Over Time" />
+</p>
+
+### Key EDA Findings
+
+- **Mechanical Parts** suppliers show the highest late-delivery rate at **32%**.
+- Overall late-delivery volume remains consistently high from **2021–2024**.
+- **Logistics Delay** is the largest loss driver at approximately **$70M**.
+- Supplier risk is concentrated in **Medium** and **High** risk bands.
+- `delay_days` has a strong relationship with `is_late`, while real-world predictive features show weaker signal in this synthetic dataset.
+
+---
+
+## 🔁 EDA Pipeline
+
+```mermaid
+flowchart LR
+    A[Raw CSV Files] --> B[Schema Validation]
+    B --> C[Data Cleaning]
+    C --> D[EDA Profiling]
+    D --> E[Feature Engineering]
+    E --> F[SQL Analytics Layer]
+    F --> G[ML Risk Scoring]
+    G --> H[Power BI Star Schema]
+    H --> I[Excel / PDF Reporting]
+```
+
+### Pipeline Stages
+
+| Stage | Output |
 |---|---|
-| 📈 **+30% Operational Visibility** | EDA and data cleaning on 100K+ records surfaced hidden shipment delays, supplier risks, and inventory bottlenecks |
-| ⚡ **Increased KPI Tracking Efficiency** | Interactive Power BI dashboards with DAX enabled live monitoring of supply chain performance metrics |
-| 🗂️ **Reduced Manual Reporting Effort** | Consolidated Excel and Power BI pipelines enabled same-day business decisions through structured ad-hoc reporting |
+| Raw ingestion | Source tables loaded into Pandas and DuckDB |
+| Validation | Missing values, duplicates, date checks, categorical checks |
+| Cleaning | Standardized data types and analytics-ready columns |
+| Feature engineering | Late flags, supplier features, inventory features, disruption features |
+| Modeling | Isolation Forest anomaly score and Random Forest late probability |
+| Scoring | Composite risk score and risk-level assignment |
+| Reporting | Power BI star schema, Excel extracts, PDF executive report |
+
+<p align="center">
+  <img src="assets/images/17_stock_position_scatter.png" width="48%" alt="Stock Position vs Reorder Point" />
+  <img src="assets/images/15_inventory_days_of_stock.png" width="48%" alt="Inventory Days of Stock Distribution" />
+</p>
 
 ---
 
-## 📁 Project Structure
+## 🧠 Machine Learning & Risk Scoring
 
+The project uses two complementary models:
+
+1. **Isolation Forest** — detects unusual purchase orders and supplier-risk anomalies.
+2. **Random Forest Classifier** — estimates late-delivery probability.
+
+The final **composite risk score** blends model outputs:
+
+```text
+Composite Risk Score = 70% × Late Delivery Probability + 30% × Normalized Anomaly Score
 ```
-supply-chain-analytics/
-│
-├── 📂 data/
-│   ├── dim_suppliers.csv            # 120 suppliers — tiers, risk bands, certifications
-│   ├── dim_products.csv             # 60 products — criticality levels & BOM data
-│   ├── dim_plants.csv               # 8 global manufacturing plants
-│   ├── fact_purchase_orders.csv     # 3,000 PO transactions with delay & defect data
-│   ├── fact_supplier_scorecard.csv  # 1,920 quarterly supplier KPI records
-│   ├── fact_disruptions.csv         # 200 supply disruption events
-│   ├── fact_inventory_buffer.csv    # 160 plant-level inventory snapshots
-│   └── fact_supplier_network.csv    # 250 directed supplier dependency edges
-│
-├── supply_chain_queries.sql         # Full star-schema DDL + 15 analytical queries
-└── supply_chain_dashboard.html      # Standalone interactive analytics dashboard
-```
+
+### Model Notes
+
+In this synthetic dataset, late/on-time labels are only weakly explained by pre-delivery features once post-hoc leakage fields are excluded. Therefore, model lift is modest, but the architecture is production-ready and transferable to real operational data.
+
+| Model / Metric | Result |
+|---|---:|
+| Random Forest ROC-AUC | **0.5254** |
+| Isolation Forest ROC-AUC | **0.5205** |
+| Random Forest Average Precision | **0.313** |
+| Cost-optimal intervention threshold | **0.23** |
+| Recall at selected threshold | **0.9695** |
+| Expected cost at selected threshold | **$979,800** |
+
+<p align="center">
+  <img src="assets/images/08_confusion_matrix.png" width="42%" alt="Random Forest Confusion Matrix" />
+  <img src="assets/images/09_roc_curve.png" width="42%" alt="ROC Curve Model Comparison" />
+</p>
+
+<p align="center">
+  <img src="assets/images/10_precision_recall.png" width="42%" alt="Precision Recall Curve" />
+  <img src="assets/images/11_feature_importance.png" width="42%" alt="Top Feature Importances" />
+</p>
+
+<p align="center">
+  <img src="assets/images/14_metric_vs_threshold.png" width="70%" alt="Precision Recall F1 vs Threshold" />
+</p>
 
 ---
 
-## 🗄️ Database Schema (Star Schema)
+## 🧾 SQL Analytics
 
-```
-                    ┌─────────────────┐
-                    │  dim_suppliers  │
-                    │─────────────────│
-                    │ supplier_id  PK │
-                    │ supplier_name   │
-                    │ tier            │
-                    │ risk_band       │
-                    │ continent       │
-                    │ is_sole_source  │
-                    └────────┬────────┘
-                             │
-           ┌─────────────────┼──────────────────┐
-           │                 │                  │
-           ▼                 ▼                  ▼
-┌──────────────────┐ ┌──────────────────┐ ┌──────────────────┐
-│fact_purchase_ord │ │fact_supplier_sco │ │ fact_disruptions │
-│──────────────────│ │──────────────────│ │──────────────────│
-│ po_id         PK │ │ score_id      PK │ │ disruption_id PK │
-│ supplier_id   FK │ │ supplier_id   FK │ │ supplier_id   FK │
-│ product_id    FK │ │ otd_score        │ │ disruption_type  │
-│ plant_id      FK │ │ quality_score    │ │ severity         │
-│ delay_days       │ │ composite_score  │ │ financial_loss   │
-│ defect_rate_pct  │ └──────────────────┘ └──────────────────┘
-│ on_time_delivery │
-└────────┬─────────┘
-         │
-    ┌────┴────┐
-    │         │
-    ▼         ▼
-┌──────────┐ ┌──────────────┐   ┌──────────────────────┐
-│dim_plant │ │ dim_products │   │ fact_inventory_buffer│
-│──────────│ │──────────────│   │──────────────────────│
-│plant_id  │ │ product_id   │   │ inventory_id      PK │
-│continent │ │ criticality  │◄──│ plant_id          FK │
-│headcount │ │ unit_cost_usd│   │ product_id        FK │
-└──────────┘ └──────────────┘   │ is_shortage_risk     │
-                                └──────────────────────┘
-```
+A SQL analytics layer was built using **DuckDB**, enabling reproducible business queries over cleaned, joined, and modeled supply-chain tables.
 
-### Tables at a Glance
+### SQL Query Themes
 
-| Table | Rows | Description |
-|---|---|---|
-| `dim_suppliers` | 120 | Supplier master — tier, risk band, certifications |
-| `dim_products` | 60 | Product master — criticality, BOM, unit cost |
-| `dim_plants` | 8 | Manufacturing plants across 5 continents |
-| `fact_purchase_orders` | 3,000 | PO transactions with delivery, defect & delay data |
-| `fact_supplier_scorecard` | 1,920 | Quarterly KPI scores across 5 dimensions |
-| `fact_disruptions` | 200 | Disruption events with type, severity & financial loss |
-| `fact_inventory_buffer` | 160 | Plant-level stock levels & shortage risk flags |
-| `fact_supplier_network` | 250 | Directed graph edges — inter-supplier dependencies |
+| Query Area | Business Purpose |
+|---|---|
+| Shipment delay by supplier | Identify suppliers driving the most delayed POs |
+| Supplier risk overview | Rank suppliers by risk band, delivery performance, and incident exposure |
+| Inventory bottlenecks | Find SKUs below reorder point and high-criticality shortages |
+| Disruption impact | Quantify loss by disruption type, severity, and supplier category |
+| Plant inventory health | Identify plants with concentrated shortage risk |
 
----
-
-## 🔬 Exploratory Data Analysis & Data Cleaning
-
-Performed comprehensive EDA and cleaning on **100K+ supply chain records** using **SQL** and **Pandas**.
-
-**Key EDA tasks:**
-- Identified and resolved missing delivery dates, null defect rates, and inconsistent supplier IDs
-- Detected shipment delay patterns by supplier tier, continent, and fiscal quarter
-- Flagged sole-source suppliers with high risk bands as critical single points of failure
-- Profiled inventory levels to surface plants operating below safety stock thresholds
-- Analyzed disruption frequency and financial loss by type (Natural Disaster, Port Strike, Cyber Attack, etc.)
-
-### EDA Pipeline
-
-```
-Raw CSVs (100K+ records)
-        │
-        ▼
-  [ Data Ingestion ]
-  Pandas / SQL load
-        │
-        ▼
-  [ Data Cleaning ]
-  Null handling · Type casting
-  Duplicate removal · FK checks
-        │
-        ▼
-  [ EDA & Profiling ]
-  Delay distribution · Defect rates
-  Risk band analysis · Stock levels
-        │
-        ▼
-  [ Feature Engineering ]
-  Delay flags · Shortage risk labels
-  Composite KPI scores · Trend fields
-        │
-        ▼
-  Star Schema DB  ──►  Power BI Dashboard
-```
-
----
-
-## 🔍 SQL Analytics
-
-The query file contains the full DDL schema plus **15 analytical queries** across 5 sections.
-
-### Section 1 — Supplier Performance & Ranking
-
-> *"Which suppliers are delivering on time and which are dragging performance down?"*
+### Example SQL Query
 
 ```sql
--- Supplier scorecard ranking with performance tier
-SELECT s.supplier_name, s.continent, s.tier,
-       ROUND(AVG(sc.composite_score), 2) AS avg_composite,
-       RANK() OVER (ORDER BY AVG(sc.composite_score) DESC) AS global_rank,
-       CASE
-           WHEN AVG(sc.composite_score) >= 90 THEN 'Preferred'
-           WHEN AVG(sc.composite_score) >= 75 THEN 'Approved'
-           WHEN AVG(sc.composite_score) >= 60 THEN 'Conditional'
-           ELSE 'At Risk'
-       END AS supplier_status
-FROM fact_supplier_scorecard sc
-JOIN dim_suppliers s ON sc.supplier_id = s.supplier_id
-WHERE sc.fiscal_year = 2024
-GROUP BY s.supplier_name, s.continent, s.tier
-ORDER BY avg_composite DESC;
+SELECT
+    s.supplier_category,
+    COUNT(*) AS purchase_orders,
+    SUM(CASE WHEN po.is_late = 1 THEN 1 ELSE 0 END) AS late_orders,
+    ROUND(100.0 * AVG(po.is_late), 2) AS late_rate_pct,
+    ROUND(SUM(po.total_value_usd), 2) AS total_order_value
+FROM fact_purchase_orders_scored po
+JOIN dim_suppliers s
+    ON po.supplier_id = s.supplier_id
+GROUP BY s.supplier_category
+ORDER BY late_rate_pct DESC;
 ```
 
-**Supplier Status Distribution (Illustrative)**
-
-```
-Preferred   ████████████████████  42%
-Approved    ██████████████        30%
-Conditional ████████              18%
-At Risk     ████                  10%
-```
-
-| # | Query | Techniques |
-|---|---|---|
-| 1.1 | Supplier scorecard ranking with performance tier | `RANK()`, `CASE`, aggregation |
-| 1.2 | On-time delivery rate and defect rate by supplier & year | `FILTER`, percentage calculation |
-| 1.3 | Quarter-over-quarter composite score trend detection | `LAG()`, window functions |
-| 1.4 | Top 5 suppliers per continent by spend | `RANK() OVER (PARTITION BY)`, CTE |
-
----
-
-### Section 2 — Bottleneck & Network Analysis
-
-> *"Which nodes in the supply chain, if disrupted, would collapse the whole network?"*
-
-```sql
--- Multi-hop supply chain dependency traversal (Recursive CTE)
-WITH RECURSIVE chain AS (
-    SELECT source_supplier_id AS root,
-           target_supplier_id AS next_node,
-           1 AS hop,
-           CAST(source_supplier_id AS VARCHAR(500)) AS path
-    FROM fact_supplier_network
-    WHERE is_critical_path = 'Y'
-
-    UNION ALL
-
-    SELECT c.root, n.target_supplier_id,
-           c.hop + 1,
-           c.path || ' -> ' || n.target_supplier_id
-    FROM chain c
-    JOIN fact_supplier_network n ON c.next_node = n.source_supplier_id
-    WHERE c.hop < 4
-      AND c.path NOT LIKE '%' || n.target_supplier_id || '%'
-)
-SELECT root, hop, path, next_node AS end_node
-FROM chain ORDER BY root, hop;
-```
-
-**Supply Network Topology (Illustrative)**
-
-```
-     [SUP-A]  ──────────────────────────►  [SUP-D]
-        │                                      │
-        │  critical path                       │
-        ▼                                      ▼
-     [SUP-B]  ──────────────────────────►  [SUP-E]
-        │              hub node                │
-        └──────────►  [SUP-C]  ◄──────────────┘
-                    ↑ bottleneck ↑
-              (in-degree = 3, High Risk)
-```
-
-| # | Query | Techniques |
-|---|---|---|
-| 2.1 | Suppliers with most downstream dependencies | Graph in-degree analysis |
-| 2.2 | Hub nodes as both source and target | Multi-CTE, `COALESCE` |
-| 2.3 | Sole-source high-risk suppliers (single points of failure) | Filtered joins, risk flagging |
-| 2.4 | Multi-hop dependency traversal | **Recursive CTE** (up to 4 hops) |
-
----
-
-### Section 3 — Disruption Risk Analysis
-
-> *"What types of disruptions cost the most, and which suppliers keep triggering them?"*
-
-```sql
--- Financial loss by disruption type and severity
-SELECT disruption_type, severity,
-       COUNT(*)                              AS event_count,
-       ROUND(AVG(duration_days), 1)          AS avg_duration_days,
-       ROUND(SUM(financial_loss_usd)/1e6, 2) AS total_loss_usd_m,
-       COUNT(*) FILTER (WHERE is_resolved='N') AS unresolved
-FROM fact_disruptions
-GROUP BY disruption_type, severity
-ORDER BY total_loss_usd_m DESC;
-```
-
-**Disruption Financial Loss by Type (Illustrative, USD M)**
-
-```
-Natural Disaster   ████████████████████████  $24.2M
-Port Strike        ████████████████          $18.7M
-Geopolitical       ████████████              $14.1M
-Raw Mat. Shortage  █████████                 $10.3M
-Logistics Delay    ███████                   $8.6M
-Pandemic           █████                     $5.9M
-Cyber Attack       ████                      $4.1M
-```
-
-| # | Query | Techniques |
-|---|---|---|
-| 3.1 | Financial loss by disruption type and severity | `FILTER`, aggregation |
-| 3.2 | Suppliers with repeated disruptions (chronic risk) | `HAVING`, multi-metric grouping |
-| 3.3 | Geographic concentration risk by continent | `SUM() OVER()` window for spend share |
-| 3.4 | Disruption heatmap — month × type frequency | Pivot-style `FILTER` aggregation |
-
----
-
-### Section 4 — Inventory & Shortage Risk
-
-> *"Which plants are running dangerously low on critical components?"*
-
-```sql
--- Below-reorder-point items needing immediate replenishment
-SELECT pl.plant_name, pr.product_name, pr.criticality,
-       i.current_stock, i.reorder_point, i.safety_stock,
-       i.days_of_stock,
-       CASE
-           WHEN i.current_stock < i.safety_stock  THEN 'CRITICAL — below safety stock'
-           WHEN i.current_stock < i.reorder_point THEN 'WARNING — below reorder point'
-           ELSE 'OK'
-       END AS replenishment_status
-FROM fact_inventory_buffer i
-JOIN dim_plants pl   ON i.plant_id = pl.plant_id
-JOIN dim_products pr ON i.product_id = pr.product_id
-WHERE i.current_stock < i.reorder_point
-ORDER BY pr.criticality, i.days_of_stock ASC;
-```
-
-**Inventory Risk Levels by Criticality (Illustrative)**
-
-```
-          CRITICAL products    HIGH products
-         ┌──────────────────────────────────┐
-         │ Below Safety   █████  12 items   │  ← Immediate action
-         │ Below Reorder  ████   8 items    │  ← Order now
-         │ OK             ██████ 40 items   │  ← Monitor
-         └──────────────────────────────────┘
-```
-
-| # | Query | Techniques |
-|---|---|---|
-| 4.1 | Plants at shortage risk by product criticality | Multi-table join, shortage % |
-| 4.2 | Below-reorder-point items needing replenishment | `CASE`-based status classification |
-| 4.3 | Days-of-stock distribution by plant | `NTILE()`, `PERCENT_RANK()` |
-
----
-
-### Section 5 — Advanced Analytics
-
-> *"Statistical and predictive models to go beyond reporting — into risk quantification."*
-
-```sql
--- Z-score anomaly detection on delivery delays
-WITH stats AS (
-    SELECT supplier_id,
-           AVG(delay_days)    AS mean_delay,
-           STDDEV(delay_days) AS std_delay
-    FROM fact_purchase_orders
-    WHERE status = 'Delayed'
-    GROUP BY supplier_id
-)
-SELECT po.po_id, s.supplier_name,
-       po.delay_days,
-       ROUND((po.delay_days - st.mean_delay) / NULLIF(st.std_delay, 0), 2) AS z_score
-FROM fact_purchase_orders po
-JOIN stats st       ON po.supplier_id = st.supplier_id
-JOIN dim_suppliers s ON po.supplier_id = s.supplier_id
-WHERE ABS((po.delay_days - st.mean_delay) / NULLIF(st.std_delay, 0)) > 2
-ORDER BY ABS(z_score) DESC;
-```
-
-**Supplier Risk Quadrant Matrix (Illustrative)**
-
-```
-High Spend  │  Develop Further     │  Strategic Partner ★
-            │  (Low Spend,         │  (High Spend,
-            │   High Score)        │   High Score)
-            │                      │
-Score  75 ──┼──────────────────────┼──────────────────
-            │  Monitor / Exit      │  ⚠ URGENT FIX
-            │  (Low Spend,         │  (High Spend,
-            │   Low Score)         │   Low Score)
-Low Spend   │                      │
-            └──────────────────────┴──────────────────
-                  Low Spend              High Spend
-```
-
-| # | Query | Techniques |
-|---|---|---|
-| 5.1 | Supplier risk matrix — spend vs score quadrant | `PERCENTILE_CONT`, dual-CTE, quadrant logic |
-| 5.2 | Z-score anomaly detection on delivery delays | Statistical z-score, `STDDEV`, `NULLIF` |
-| 5.3 | Rolling 4-quarter average OTD score | Sliding window `ROWS BETWEEN` |
-| 5.4 | Expected annual loss from disruption probability | Monte Carlo–style expected value, `NTILE` |
-| 5.5 | Lead time volatility — coefficient of variation | `STDDEV / AVG`, CV calculation |
+<p align="center">
+  <img src="assets/images/16_inventory_bottleneck_by_plant.png" width="48%" alt="Inventory Bottlenecks by Plant" />
+  <img src="assets/images/04_loss_by_type.png" width="48%" alt="Financial Loss by Disruption Type" />
+</p>
 
 ---
 
 ## 📊 Power BI Dashboard
 
-An interactive Power BI dashboard was built on top of the cleaned data to enable **live KPI monitoring** across the supply chain.
+The project includes a Power BI-ready star schema and DAX measure layer for executive monitoring.
 
-**DAX measures include:**
-- On-Time Delivery % with quarter-over-quarter variance
-- Composite supplier score rolling average
-- Inventory shortage risk rate by plant and product criticality
-- Expected annual disruption loss per supplier
-- Geographic spend concentration share
+### Recommended Dashboard Pages
 
-**Dashboard pages:**
-1. Supplier Performance Scorecard
-2. Disruption Risk & Financial Loss Breakdown
-3. Inventory Shortage Heatmap by Plant
-4. Geographic Spend Concentration
-5. Supplier Network Dependency Graph
+| Page | Purpose | Suggested Visuals |
+|---|---|---|
+| Executive Overview | High-level KPI summary | KPI cards, risk distribution, late-rate trend |
+| Supplier Risk | Supplier segmentation and watchlist | Supplier risk band, late rate by category, ranked supplier table |
+| Disruption Impact | Loss and severity monitoring | Loss by type, disruption severity stack, event timeline |
+| Inventory Health | Bottlenecks and reorder risk | Days of stock, stock vs reorder point, plant shortage bars |
+| ML Risk Scoring | Model performance and risk thresholding | ROC, PR curve, confusion matrix, feature importance, cost curve |
+
+### Suggested DAX Measures
+
+```DAX
+Total Purchase Orders = COUNTROWS(fact_purchase_orders_scored)
+
+Late Orders =
+CALCULATE(
+    COUNTROWS(fact_purchase_orders_scored),
+    fact_purchase_orders_scored[is_late] = 1
+)
+
+Late Delivery Rate = DIVIDE([Late Orders], [Total Purchase Orders])
+
+Total Disruption Loss = SUM(fact_disruptions[financial_loss_usd])
+
+High Critical Risk POs =
+CALCULATE(
+    COUNTROWS(fact_purchase_orders_scored),
+    fact_purchase_orders_scored[risk_level] IN {"High", "Critical"}
+)
+
+Shortage Risk SKUs =
+CALCULATE(
+    COUNTROWS(fact_inventory),
+    fact_inventory[shortage_risk_flag] = 1
+)
+```
+
+<p align="center">
+  <img src="assets/images/12_risk_level_distribution.png" width="45%" alt="Purchase Orders by Risk Level" />
+  <img src="assets/images/07_supplier_risk_band.png" width="45%" alt="Suppliers by Risk Band" />
+</p>
 
 ---
 
-## 📋 Reporting & Excel Integration
+## 📑 Reporting & Excel Integration
 
-Manual reporting effort was reduced by consolidating **Excel and Power BI data pipelines**:
+This project is designed for both technical analysis and business reporting.
 
-- Structured data model replaced ad-hoc Excel sheets with a single source of truth
-- Automated refresh enabled same-day business decisions without manual data pulls
-- Ad-hoc reporting layer allows stakeholders to slice KPIs by region, supplier tier, product category, and fiscal period
+### Reporting Deliverables
+
+| Deliverable | Description |
+|---|---|
+| PDF Executive Report | Narrative report covering EDA, model performance, scoring, cost optimization, SQL findings, and Power BI deliverables |
+| Excel Report | Business-friendly tables for supplier watchlists, inventory bottlenecks, risk tiers, and disruption summaries |
+| Power BI Dataset | Star-schema CSV exports and DAX measures for interactive dashboards |
+| SQL Exports | Query result CSVs for repeatable analytics and auditability |
+
+### Excel Use Cases
+
+- Procurement action tracker for high/critical purchase orders.
+- Supplier performance review pack.
+- Plant inventory shortage review.
+- Disruption-loss summary by type and severity.
+- Weekly risk-monitoring report for operations leaders.
+
+<p align="center">
+  <img src="assets/images/03_disruptions_by_type.png" width="48%" alt="Disruptions by Type and Severity" />
+  <img src="assets/images/17_stock_position_scatter.png" width="48%" alt="Stock Position vs Reorder Point" />
+</p>
+
+> 📄 Full report: [`docs/Supply_Chain_Risk_Report.pdf`](docs/Supply_Chain_Risk_Report.pdf)
 
 ---
 
 ## 🚀 Getting Started
 
-### 1. Load the Database (PostgreSQL)
+Follow these steps to reproduce the project locally.
 
-```sql
-psql -U your_user -d your_database -f supply_chain_queries.sql
-```
-
-> Uses **PostgreSQL-specific syntax** — `FILTER`, `PERCENTILE_CONT`, `STDDEV`, recursive CTEs.
-
-### 2. Import CSV Data (respect FK order)
-
-```sql
-COPY dim_suppliers      FROM '/path/to/dim_suppliers.csv'      DELIMITER ',' CSV HEADER;
-COPY dim_products       FROM '/path/to/dim_products.csv'       DELIMITER ',' CSV HEADER;
-COPY dim_plants         FROM '/path/to/dim_plants.csv'         DELIMITER ',' CSV HEADER;
-COPY fact_purchase_orders      FROM '/path/...' DELIMITER ',' CSV HEADER;
-COPY fact_supplier_scorecard   FROM '/path/...' DELIMITER ',' CSV HEADER;
-COPY fact_disruptions          FROM '/path/...' DELIMITER ',' CSV HEADER;
-COPY fact_inventory_buffer     FROM '/path/...' DELIMITER ',' CSV HEADER;
-COPY fact_supplier_network     FROM '/path/...' DELIMITER ',' CSV HEADER;
-```
-
-### 3. Open the Dashboard
+### 1. Clone the Repository
 
 ```bash
-open supply_chain_dashboard.html
+git clone https://github.com/rohit-bhowmick2002/SUPPLY-CHAIN-RISK-ANALYTICS.git
+cd SUPPLY-CHAIN-RISK-ANALYTICS
 ```
 
+### 2. Create a Virtual Environment
+
+```bash
+python -m venv .venv
+source .venv/bin/activate      # macOS/Linux
+# .venv\Scripts\activate       # Windows
+```
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Run the Pipeline
+
+```bash
+python src/run_pipeline.py
+```
+
+### 5. Run SQL Analysis
+
+```bash
+duckdb supply_chain.duckdb < sql/analysis_queries.sql
+```
+
+### 6. Open Power BI
+
+1. Open Power BI Desktop.
+2. Import CSV exports from `powerbi/star_schema_exports/`.
+3. Recreate relationships from `powerbi/DATA_MODEL.md`.
+4. Paste measures from `powerbi/MEASURES.dax`.
+5. Build dashboard pages using the suggested layout above.
+
 ---
 
-## 🛠️ Tech Stack
+## 🧰 Tech Stack
 
-| Layer | Tools |
+<div align="center">
+
+| Category | Tools |
 |---|---|
-| Data Cleaning & EDA | SQL, Python (Pandas) |
-| Database | PostgreSQL |
-| BI & Visualization | Power BI, DAX |
-| Reporting | Microsoft Excel, Power BI |
-| Dashboard (Web) | HTML, CSS, JavaScript |
-| Data Format | CSV |
+| Programming | Python |
+| Data Analysis | Pandas, NumPy |
+| Machine Learning | Scikit-learn, Random Forest, Isolation Forest |
+| SQL Engine | DuckDB SQL |
+| BI & Dashboarding | Power BI, DAX, Power Query |
+| Reporting | Excel, PDF reporting |
+| Visualization | Matplotlib, Seaborn |
+| Version Control | Git, GitHub |
+
+</div>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/SQL-025E8C?style=for-the-badge&logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/DuckDB-FFF000?style=for-the-badge&logo=duckdb&logoColor=black" />
+  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" />
+  <img src="https://img.shields.io/badge/Scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white" />
+  <img src="https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black" />
+  <img src="https://img.shields.io/badge/Excel-217346?style=for-the-badge&logo=microsoftexcel&logoColor=white" />
+</p>
 
 ---
 
-## 💡 Key Business Questions Answered
+## ❓ Key Business Questions Answered
 
-- Which suppliers are **single points of failure** and what is their financial exposure?
-- Where are **shipment delays** concentrated — by supplier, region, or product?
-- Which plants are at risk of **critical stockouts** in the near term?
-- Which suppliers show **chronic disruption patterns** driving the most financial loss?
-- What is the **expected annual loss** per supplier based on disruption history?
-- Which geographic regions carry dangerous **spend concentration risk**?
-- Which suppliers have **statistically anomalous delays** detected via z-score analysis?
+| Business Question | Project Answer |
+|---|---|
+| What percentage of purchase orders are late? | **28.4%** of purchase orders are late. |
+| Which supplier categories have the highest late rate? | **Mechanical Parts** has the highest late rate at **32%**. |
+| Which disruption types create the largest financial losses? | **Logistics Delay** is the largest financial-loss driver. |
+| How many suppliers are in each risk band? | **48 low**, **50 medium**, and **22 high-risk** suppliers. |
+| How many purchase orders require intervention? | **640 high/critical POs** are flagged for action. |
+| Which inventory items are below reorder point? | **17 SKU lines** are below reorder point. |
+| Are critical inventory items understocked? | **9 high/critical items** are understocked. |
+| Which plants have inventory bottlenecks? | Warsaw, Monterrey, Shanghai, and Toronto show visible bottleneck concentration. |
+| What threshold minimizes intervention cost? | A threshold of **0.23** minimizes expected cost to **$979,800**. |
+| Can the model be used directly in operations? | Yes — the scoring, alert tiers, SQL outputs, and Power BI model are production-style and operationally ready. |
+
+<p align="center">
+  <img src="assets/images/15_inventory_days_of_stock.png" width="48%" alt="Inventory Days of Stock Distribution" />
+  <img src="assets/images/16_inventory_bottleneck_by_plant.png" width="48%" alt="Inventory Bottlenecks by Plant" />
+</p>
+
+---
+
+## ✅ Additional Insights
+
+### Inventory Risk
+
+- Median stock coverage is approximately **32 days**.
+- Lowest coverage is approximately **1.8 days of stock**.
+- Shortage-risk flags are concentrated in a small number of plants, enabling targeted intervention.
+
+### Disruption Risk
+
+- Logistics delays, port strikes, and natural disasters are major loss contributors.
+- Disruption severity should be monitored alongside supplier and inventory risk.
+- Financial exposure is not evenly distributed; specific event types dominate loss.
+
+### Modeling Insight
+
+- The current synthetic dataset has limited signal for late-delivery prediction.
+- The value of the project is the complete analytics architecture: repeatable pipeline, risk scoring, cost thresholding, and business reporting.
+- On real-world operational data, supplier lead-time history, disruption signals, quality scores, and inventory status can significantly improve predictive power.
+
+---
+
+## 📌 Final Recommendations
+
+1. Prioritize **Critical** and **High** risk purchase orders for immediate procurement review.
+2. Build a recurring supplier performance review for high-risk suppliers.
+3. Monitor logistics-delay exposure because it contributes the highest financial loss.
+4. Use the **0.23 intervention threshold** for cost-sensitive alerting.
+5. Focus inventory action on SKU lines below reorder point, especially high/critical items.
+6. Refresh Power BI dashboards weekly using the scored purchase-order export.
+
+<p align="center">
+  <img src="assets/images/13_cost_curve.png" width="48%" alt="Expected Cost vs Intervention Threshold" />
+  <img src="assets/images/14_metric_vs_threshold.png" width="48%" alt="Precision Recall F1 vs Threshold" />
+</p>
 
 ---
 
 ## 👤 Author
 
-**Rohit Bhowmick** — Data Analyst  
-*SQL · Python · Tableau · Power BI*
+<div align="center">
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](https://linkedin.com/in/rohit-bhowmick)
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=flat&logo=github)](https://github.com/rohit-bhowmick2002)
+### Rohit Bhowmick
+
+**Data Analyst | Microsoft Certified PL-300 | SQL · Python · Power BI · DAX**
+
+<p>
+  <a href="mailto:rohitbhowmick817@gmail.com"><img src="https://img.shields.io/badge/Email-rohitbhowmick817%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" /></a>
+  <a href="https://www.linkedin.com/in/rohit-bhowmick"><img src="https://img.shields.io/badge/LinkedIn-Rohit%20Bhowmick-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+  <a href="https://github.com/rohit-bhowmick2002"><img src="https://img.shields.io/badge/GitHub-rohit--bhowmick2002-181717?style=for-the-badge&logo=github&logoColor=white" /></a>
+</p>
+
+</div>
 
 ---
 
-*Built to demonstrate real-world e-commerce analytics competency: relational data modelling, multi-level SQL engineering, customer segmentation, operational diagnostics, and business storytelling through data.*
+<div align="center">
+
+### ⭐ If this project helped you, consider starring the repository.
+
+<b>Built to turn supply-chain risk signals into faster, smarter operational decisions.</b>
+
+</div>
